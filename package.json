@@ -1,0 +1,22 @@
+{
+  "name": "summer-camp-planner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "node tests/handoffs.mjs && node tests/persistence.mjs"
+  },
+  "dependencies": {
+    "vue": "^3.5.0",
+    "lucide-vue-next": "^0.468.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.0",
+    "vue-tsc": "^2.2.0"
+  }
+}
