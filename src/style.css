@@ -1710,3 +1710,37 @@ footer {
   outline: 2px solid #91a77b;
   outline-offset: 2px;
 }
+.camp-art.Dance {
+  background: #f6e9e3;
+  color: #bb917c;
+}
+.camp-art.Soccer,
+.camp-art.Sports {
+  background: #eaf0e0;
+  color: #829964;
+}
+.camp-art.YMCA {
+  background: #e5edf0;
+  color: #87a7b2;
+}
+.camp-art.Grandparent {
+  background: #eeecd8;
+  color: #a5a16d;
+}
+.camp-art.Other {
+  background: #eef0eb;
+  color: #8a9680;
+}
+.modal .checkbox-label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.modal .checkbox-label input {
+  width: auto;
+}
+
+.camp-art.Theater {
+  background: #eee7f4;
+  color: #9777ae;
+}

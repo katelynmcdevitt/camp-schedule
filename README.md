@@ -79,3 +79,5 @@ Run `npm run format` to format the repository with Prettier’s default settings
 - `src/types.ts`: shared data types.
 
 The parent owns shared state; components receive typed props, emit actions, and use named models for editable values. Existing global CSS classes are retained.
+
+Camp types are Dance, Theater, Soccer, Sports, YMCA, Grandparent, and Other. Existing saved categories migrate automatically. “No care this week” is a separate field, so no-camp entries stay excluded from care coverage and handoff alerts.

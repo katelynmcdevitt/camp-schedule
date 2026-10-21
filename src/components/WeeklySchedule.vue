@@ -101,8 +101,9 @@ const emit = defineEmits<{
                   @click="emit('edit', camp)"
                 >
                   <b>{{ camp.name }}</b
-                  ><span v-if="camp.type === 'family'">Family care</span
-                  ><span v-else-if="camp.type === 'none'">No camp</span
+                  ><span v-if="camp.type === 'Grandparent' && !camp.noCamp"
+                    >Family care</span
+                  ><span v-else-if="camp.noCamp">No camp</span
                   ><template v-else
                     ><span
                       >Drop-off <em>{{ formatTime(camp.dropoff) }}</em></span

@@ -72,6 +72,33 @@ export const usePlanner = (seasonYear: number) => {
       camp.paid =
         initial.find((source) => source.id === camp.id)?.paid ?? false;
   }
+  // Migrate the old categories without changing any other saved camp details.
+  const campTypes = [
+    "Dance",
+    "Theater",
+    "Soccer",
+    "Sports",
+    "YMCA",
+    "Grandparent",
+    "Other",
+  ];
+  for (const camp of startingCamps) {
+    if (!campTypes.includes(camp.type)) {
+      if (camp.type === "none") camp.noCamp = true;
+      const name = camp.name.toLowerCase();
+      camp.type = name.includes("dance")
+        ? "Dance"
+        : name.includes("soccer")
+          ? "Soccer"
+          : name === "ymca"
+            ? "YMCA"
+            : camp.type === "family"
+              ? "Grandparent"
+              : ["football", "sports"].some((sport) => name.includes(sport))
+                ? "Sports"
+                : "Other";
+    }
+  }
   const camps = ref<Camp[]>(startingCamps);
   const hasSeparateCost = (camp: Camp) =>
     !camp.costIncludedIn && (camp.cost ?? 0) > 0;
@@ -229,7 +256,7 @@ export const usePlanner = (seasonYear: number) => {
             (c) =>
               c.kid === k &&
               c.status === "Confirmed" &&
-              c.type !== "none" &&
+              !c.noCamp &&
               c.start <= iso(d) &&
               c.end >= iso(end),
           ),
@@ -280,7 +307,7 @@ export const usePlanner = (seasonYear: number) => {
           reason: camps.value.some(
             (c) =>
               c.kid === index &&
-              c.type === "none" &&
+              c.noCamp &&
               c.start <= week.start &&
               c.end >= week.end,
           )

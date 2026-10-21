@@ -6,6 +6,7 @@ export type TimedCamp = {
   end: string;
   status: string;
   type: string;
+  noCamp?: boolean;
   dropoff?: string | null;
   pickup?: string | null;
 };
@@ -25,6 +26,7 @@ export function handoffWarnings(
         c.start <= date &&
         c.end >= date &&
         c.status !== "Wishlist" &&
+        !c.noCamp &&
         c.type !== "none",
     )
     .flatMap((c) =>

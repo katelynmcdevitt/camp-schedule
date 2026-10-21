@@ -9,10 +9,11 @@
       "location": "",
       "cost": 205,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "Sports",
       "dropoff": "08:45",
       "pickup": "15:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-2",
@@ -22,10 +23,11 @@
       "location": "",
       "cost": 362,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-3",
@@ -35,10 +37,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-4",
@@ -48,10 +51,11 @@
       "location": "",
       "cost": 362,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-5",
@@ -61,10 +65,11 @@
       "location": "",
       "cost": 362,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-6",
@@ -74,10 +79,11 @@
       "location": "",
       "cost": 669.8,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-7",
@@ -87,10 +93,11 @@
       "location": "",
       "cost": 569,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "Soccer",
       "dropoff": "08:45",
       "pickup": "12:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-8",
@@ -100,10 +107,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-9",
@@ -113,10 +121,11 @@
       "location": "",
       "cost": 215,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-10",
@@ -126,10 +135,11 @@
       "location": "",
       "cost": 215,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "owen-2026-week-11",
@@ -139,10 +149,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     }
   ]
 }

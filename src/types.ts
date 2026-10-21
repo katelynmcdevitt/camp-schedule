@@ -13,6 +13,7 @@ export type Camp = {
   costIncludedIn?: string;
   status: string;
   type: string;
+  noCamp?: boolean;
 };
 
 export type CareWeek = {

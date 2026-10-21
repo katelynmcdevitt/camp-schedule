@@ -2,11 +2,24 @@
 import {
   ArrowUpRight,
   ChevronRight,
-  Leaf,
-  Waves,
-  Palette,
-  Mountain,
+  Music,
+  Drama,
+  CircleDot,
+  Trophy,
+  Tent,
+  Users,
+  Shapes,
 } from "lucide-vue-next";
+import type { Component } from "vue";
+const typeIcons: Record<string, Component> = {
+  Dance: Music,
+  Theater: Drama,
+  Soccer: CircleDot,
+  Sports: Trophy,
+  YMCA: Tent,
+  Grandparent: Users,
+  Other: Shapes,
+};
 import type { Camp } from "../types";
 
 defineProps<{
@@ -46,18 +59,7 @@ const emit = defineEmits<{ edit: [camp: Camp]; showCamps: [] }>();
         @click="emit('edit', camp)"
       >
         <div :class="['camp-art', camp.type]">
-          <component
-            :is="
-              camp.type === 'nature'
-                ? Leaf
-                : camp.type === 'water'
-                  ? Waves
-                  : camp.type === 'art'
-                    ? Palette
-                    : Mountain
-            "
-            :size="25"
-          />
+          <component :is="typeIcons[camp.type] || Shapes" :size="25" />
         </div>
         <div class="camp-info">
           <div class="camp-card-top">

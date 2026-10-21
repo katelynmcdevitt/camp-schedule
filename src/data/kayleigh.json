@@ -9,10 +9,11 @@
       "location": "",
       "cost": 640,
       "status": "Confirmed",
-      "type": "art",
+      "type": "Other",
       "dropoff": "08:45",
       "pickup": "15:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-2",
@@ -22,10 +23,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "art",
+      "type": "Other",
       "dropoff": "08:45",
       "pickup": "15:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-3",
@@ -35,10 +37,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-4",
@@ -48,10 +51,11 @@
       "location": "",
       "cost": 344,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-5",
@@ -61,10 +65,11 @@
       "location": "",
       "cost": 783,
       "status": "Confirmed",
-      "type": "art",
+      "type": "Dance",
       "dropoff": "08:45",
       "pickup": "15:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-6",
@@ -74,11 +79,12 @@
       "location": "",
       "cost": null,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "costIncludedIn": "owen-2026-week-6",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-7",
@@ -88,10 +94,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "adventure",
+      "type": "YMCA",
       "dropoff": "08:30",
       "pickup": "18:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-8",
@@ -101,10 +108,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-9",
@@ -114,10 +122,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "art",
+      "type": "Dance",
       "dropoff": "08:45",
       "pickup": "17:00",
-      "paid": true
+      "paid": true,
+      "noCamp": false
     },
     {
       "id": "kayleigh-2026-week-10",
@@ -127,10 +136,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "none",
+      "type": "Other",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": true
     },
     {
       "id": "kayleigh-2026-week-11",
@@ -140,10 +150,11 @@
       "location": "",
       "cost": 0,
       "status": "Confirmed",
-      "type": "family",
+      "type": "Grandparent",
       "dropoff": null,
       "pickup": null,
-      "paid": true
+      "paid": true,
+      "noCamp": false
     }
   ]
 }

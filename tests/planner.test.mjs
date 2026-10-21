@@ -118,3 +118,46 @@ test("storage failures warn the user while allowing in-memory editing", () =>
     assert.equal(state.storageError.value, true);
     assert.equal(state.camps.value[0].name, "Still editable");
   }));
+
+test("legacy camp types migrate without changing saved costs or no-care weeks", () => {
+  const first = createPlanner(2026);
+  const storage = first.storage;
+  first.stop();
+  const saved = JSON.parse(storage.get("camp-days-2026"));
+  saved.camps.find((c) => c.id === "owen-2026-week-1").type = "adventure";
+  saved.camps.find((c) => c.id === "kayleigh-2026-week-5").type = "art";
+  saved.camps.find((c) => c.id === "kayleigh-2026-week-3").type = "family";
+  const noCamp = saved.camps.find((c) => c.id === "kayleigh-2026-week-10");
+  noCamp.type = "none";
+  delete noCamp.noCamp;
+  storage.set("camp-days-2026", JSON.stringify(saved));
+  const migrated = createPlanner(2026, storage);
+  try {
+    const entries = migrated.state.camps.value;
+    assert.equal(
+      entries.find((c) => c.id === "owen-2026-week-1").type,
+      "Sports",
+    );
+    assert.equal(
+      entries.find((c) => c.id === "kayleigh-2026-week-5").type,
+      "Dance",
+    );
+    assert.equal(
+      entries.find((c) => c.id === "kayleigh-2026-week-3").type,
+      "Grandparent",
+    );
+    assert.equal(
+      entries.find((c) => c.id === "kayleigh-2026-week-10").type,
+      "Other",
+    );
+    assert.equal(
+      entries.find((c) => c.id === "kayleigh-2026-week-10").noCamp,
+      true,
+    );
+    assert.equal(migrated.state.covered.value, 21);
+    assert.equal(migrated.state.total.value, 4726.8);
+    assert.equal(migrated.state.blank().type, "Other");
+  } finally {
+    migrated.stop();
+  }
+});

@@ -105,15 +105,20 @@ const emit = defineEmits<{ save: []; remove: [] }>();
               placeholder="Not provided" /></label
           ><label
             >Type<select v-model="form.type">
-              <option value="nature">Nature</option>
-              <option value="art">Arts & crafts</option>
-              <option value="water">Water & swim</option>
-              <option value="adventure">Adventure</option>
-              <option value="family">Family care</option>
-              <option value="none">No camp</option>
+              <option>Dance</option>
+              <option>Theater</option>
+              <option>Soccer</option>
+              <option>Sports</option>
+              <option>YMCA</option>
+              <option>Grandparent</option>
+              <option>Other</option>
             </select></label
           >
         </div>
+        <label class="checkbox-label"
+          ><input v-model="form.noCamp" type="checkbox" /> No care this
+          week</label
+        >
         <label v-if="!form.costIncludedIn"
           >Payment status<select v-model="form.paid">
             <option :value="false">Unpaid</option>

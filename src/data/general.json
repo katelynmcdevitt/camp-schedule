@@ -8,10 +8,11 @@
   "newCamp": {
     "cost": 0,
     "status": "Confirmed",
-    "type": "nature",
+    "type": "Other",
     "dropoff": null,
     "pickup": null,
-    "paid": false
+    "paid": false,
+    "noCamp": false
   },
   "handoffBufferMinutes": 30
 }
