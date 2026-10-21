@@ -57,3 +57,9 @@ Use the **Summer** year picker in the header. The supplied 2026 schedule stays i
 New seasons use 11 weeks starting on the Monday on or before June 15 (June 14 for 2027). Calendar, missing weeks, weekly handoffs, payments, and new-camp date defaults use the selected season. Camp dates must fall in that year. JSON backups are named for the year and include its plan and handoff threshold.
 
 `App.vue` manages year selection; `Planner.vue` holds the active year’s planner. Storage failures show a warning; saving is specific to the browser and local server origin. `npm test` checks both handoffs and persistence across season switches, including deletions and payment edits.
+
+## Automated checks
+
+Run `npm test` for the Node.js test suite and `npm run build` for TypeScript validation and the Vite production build. Tests cover handoff conflicts, season-specific persistence, payment totals and shared payment toggles, missing care, multiweek payment rows, camp editing and deletion, validation, and storage failures. Planner tests exercise the Vue setup and reactive state; they do not run browser layout checks.
+
+GitHub Actions runs both commands on every push and pull request, using Node.js 22 and a clean `npm ci` install. See `.github/workflows/ci.yml` and the repository’s **Actions** tab for results.
