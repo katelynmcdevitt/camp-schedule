@@ -56,14 +56,26 @@ Use the **Summer** year picker in the header. The supplied 2026 schedule stays i
 
 New seasons use 11 weeks starting on the Monday on or before June 15 (June 14 for 2027). Calendar, missing weeks, weekly handoffs, payments, and new-camp date defaults use the selected season. Camp dates must fall in that year. JSON backups are named for the year and include its plan and handoff threshold.
 
-`App.vue` manages year selection; `Planner.vue` holds the active year’s planner. Storage failures show a warning; saving is specific to the browser and local server origin. `npm test` checks both handoffs and persistence across season switches, including deletions and payment edits.
+`App.vue` manages year selection; `Planner.vue` connects the active year’s components. Storage failures show a warning; saving is specific to the browser and local server origin. `npm test` checks both handoffs and persistence across season switches, including deletions and payment edits.
 
 ## Automated checks
 
-Run `npm test` for the Node.js test suite and `npm run build` for TypeScript validation and the Vite production build. Tests cover handoff conflicts, season-specific persistence, payment totals and shared payment toggles, missing care, multiweek payment rows, camp editing and deletion, validation, and storage failures. Planner tests exercise the Vue setup and reactive state; they do not run browser layout checks.
+Run `npm test` for the Node.js test suite and `npm run build` for TypeScript validation and the Vite production build. Tests cover handoff conflicts, season-specific persistence, payment totals and shared payment toggles, missing care, multiweek payment rows, camp editing and deletion, validation, and storage failures. Planner tests exercise the shared composable and reactive state. Component tests exercise rendering and emitted actions in a lightweight Vue host; they do not check browser layout.
 
 GitHub Actions runs both commands on every push and pull request, using Node.js 22 and a clean `npm ci` install. See `.github/workflows/ci.yml` and the repository’s **Actions** tab for results.
 
 ## Formatting
 
 Run `npm run format` to format the repository with Prettier’s default settings, or `npm run format:check` to check without making changes. Generated output and dependencies are excluded. GitHub Actions also checks formatting on pushes and pull requests.
+
+## Component structure
+
+- `src/Planner.vue`: page layout and component wiring.
+- `src/composables/usePlanner.ts`: season data, localStorage, care and payment calculations, and editing actions.
+- `src/components/PlannerSidebar.vue` and `PlannerSummary.vue`: navigation and summary cards.
+- `src/components/MonthCalendar.vue`, `WeeklySchedule.vue`, and `CampList.vue`: calendar and camp views.
+- `src/components/CareOverview.vue` and `PaymentsTable.vue`: care grid and payments.
+- `src/components/MissingWeeksDialog.vue` and `PlannerDialogs.vue`: missing weeks, camp editor, and family settings.
+- `src/types.ts`: shared data types.
+
+The parent owns shared state; components receive typed props, emit actions, and use named models for editable values. Existing global CSS classes are retained.

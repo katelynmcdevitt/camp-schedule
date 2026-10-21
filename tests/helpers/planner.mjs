@@ -1,50 +1,43 @@
 import fs from "node:fs";
-import { parse, compileScript } from "@vue/compiler-sfc";
 import ts from "typescript";
 import { effectScope } from "vue";
 
+// Exercise the same composable used by the UI, without compiling Vue templates.
+const transpile = (source) =>
+  ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.ESNext,
+      target: ts.ScriptTarget.ES2020,
+    },
+  }).outputText;
+const moduleURL = (source) =>
+  `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
 let source = fs.readFileSync(
-  new URL("../../src/Planner.vue", import.meta.url),
+  new URL("../../src/composables/usePlanner.ts", import.meta.url),
   "utf8",
 );
 source = source.replace(
-  /import (\w+) from ["'](\.\/data\/[^"']+)["']/g,
+  /import (\w+) from ["'](\.\.\/data\/[^"']+)["']/g,
   (_, name, path) =>
-    `const ${name} = ${fs.readFileSync(new URL("../../src/" + path.slice(2), import.meta.url), "utf8")}`,
+    `const ${name} = ${fs.readFileSync(new URL("../../src/" + path.slice(3), import.meta.url), "utf8")}`,
 );
-const helper = ts.transpileModule(
-  fs.readFileSync(
-    new URL("../../src/lib/handoffs.ts", import.meta.url),
-    "utf8",
+const handoffs = moduleURL(
+  transpile(
+    fs.readFileSync(
+      new URL("../../src/lib/handoffs.ts", import.meta.url),
+      "utf8",
+    ),
   ),
-  { compilerOptions: { module: ts.ModuleKind.ESNext } },
-).outputText;
+);
 source = source.replace(
-  /["']\.\/lib\/handoffs["']/g,
-  `'data:text/javascript;base64,${Buffer.from(helper).toString("base64")}'`,
+  /["']\.\.\/lib\/handoffs["']/g,
+  JSON.stringify(handoffs),
 );
-const { descriptor } = parse(source);
-const compiled = compileScript(descriptor, { id: "persistence-test" });
-let js = ts.transpileModule(compiled.content, {
-  compilerOptions: {
-    module: ts.ModuleKind.ESNext,
-    target: ts.ScriptTarget.ES2020,
-  },
-}).outputText;
-for (const dependency of ["vue", "lucide-vue-next"]) {
-  js = js
-    .replaceAll(
-      `from "${dependency}"`,
-      `from '${import.meta.resolve(dependency)}'`,
-    )
-    .replaceAll(
-      `from '${dependency}'`,
-      `from '${import.meta.resolve(dependency)}'`,
-    );
-}
-const { default: Planner } = await import(
-  `data:text/javascript;base64,${Buffer.from(js).toString("base64")}`
+let js = transpile(source).replace(
+  /from ["']vue["']/g,
+  `from '${import.meta.resolve("vue")}'`,
 );
+const { usePlanner } = await import(moduleURL(js));
 
 export const createPlanner = (year, storage = new Map()) => {
   globalThis.localStorage = {
@@ -52,11 +45,6 @@ export const createPlanner = (year, storage = new Map()) => {
     setItem: (key, value) => storage.set(key, value),
   };
   const scope = effectScope();
-  const state = scope.run(() =>
-    Planner.setup(
-      { seasonYear: year, availableYears: [2026, 2027] },
-      { expose: () => {}, emit: () => {} },
-    ),
-  );
+  const state = scope.run(() => usePlanner(year));
   return { state, storage, stop: () => scope.stop() };
 };
