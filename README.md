@@ -63,3 +63,7 @@ New seasons use 11 weeks starting on the Monday on or before June 15 (June 14 fo
 Run `npm test` for the Node.js test suite and `npm run build` for TypeScript validation and the Vite production build. Tests cover handoff conflicts, season-specific persistence, payment totals and shared payment toggles, missing care, multiweek payment rows, camp editing and deletion, validation, and storage failures. Planner tests exercise the Vue setup and reactive state; they do not run browser layout checks.
 
 GitHub Actions runs both commands on every push and pull request, using Node.js 22 and a clean `npm ci` install. See `.github/workflows/ci.yml` and the repository’s **Actions** tab for results.
+
+## Formatting
+
+Run `npm run format` to format the repository with Prettier’s default settings, or `npm run format:check` to check without making changes. Generated output and dependencies are excluded. GitHub Actions also checks formatting on pushes and pull requests.
